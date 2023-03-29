@@ -60,7 +60,12 @@
       {% endif %}
     >
     <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
-      {{ value -}}
+      {%- for variant in product.variants -%}
+        {%- if variant.title contains value and variant.image != blank -%}
+          <img src="{{ variant.image.src | img_url: '60x' }}" width="30" height="30" alt="{{ variant.image.alt }}">
+        {%- endif -%}
+      {%- endfor -%}
+      <span>{{ value | prepend: ' ' }}</span>
       <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
     </label>
   {%- elsif block.settings.picker_type == 'dropdown' -%}

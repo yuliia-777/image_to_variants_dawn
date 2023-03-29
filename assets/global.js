@@ -840,6 +840,22 @@ class VariantSelects extends HTMLElement {
     if (!modalContent) return;
     const newMediaModal = modalContent.querySelector( `[data-media-id="${this.currentVariant.featured_media.id}"]`);
     modalContent.prepend(newMediaModal);
+
+
+    // show only variant madia
+    const productMediaItems = document.querySelectorAll('[data-media-alt]')
+    const selected_variant = this.currentVariant.featured_media.alt;
+    const selected_attribute = `[data-media-alt="${selected_variant}"]`;
+
+    productMediaItems.forEach((item) => {
+      item.classList.add('hidden')
+    })
+
+    if (selected_variant == selected_variant) {
+      document.querySelectorAll(selected_attribute).forEach((item) => {
+        item.classList.remove('hidden')
+      })
+    }
   }
 
   updateURL() {
